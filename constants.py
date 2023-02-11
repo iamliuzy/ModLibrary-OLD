@@ -1,3 +1,8 @@
+"""
+Constant definitions.
+"""
+
+
 LICENSE_TEXT = """
                ModLibrary, a Minecraft mod manager.
                Copyright (C) 2022  iamliuzy

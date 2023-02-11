@@ -1,5 +1,11 @@
+"""
+Json file access API.
+"""
+
+import os.path
 from pathlib import PurePath
 import json
+
 
 
 class JsonFile:
@@ -8,39 +14,44 @@ class JsonFile:
     """
     def __init__(self, path: PurePath, filetype="") -> None:
         """
-        params:
-        path: Path of the json file to access.
-        filetype: (Optional) Type of the json file, should be "dict" or "list".
+        :param filetype: Data type of the file, should be "dict" or "list".
         """
+        self.path = os.path.abspath(path)
+        with open(self.path, "r", encoding="utf-8") as file:
+            self.text = file.read()
         if filetype == "":
-            f = open(path, "r", encoding="utf-8")
-            try:
-                if f.read().startswith("{"):
-                    filetype = "dict"
-                elif f.read().startswith("["):
-                    filetype = list
-                else:
-                    raise Exception("Unkdown json file type: " + path + ".")
-            finally:
-                f.close()
-        self.file = open(path, "r+", encoding="utf-8")
-        self.text = self.file.read()
+            if self.text.startswith("{"):
+                filetype = "dict"
+            elif self.text.startswith("["):
+                filetype = list
+            else:
+                raise TypeError("Unkdown json file type: " + self.path + ".")
+
         if filetype == "list":
             self.obj = list(json.loads(self.text))
         elif filetype == "dict":
             self.obj = dict(json.loads(self.text))
-        else:
-            raise Exception("Unkdown json file type: " + filetype + ".")
 
     def edit(self, new: list | dict) -> None:
+        """
+        Edit the json file.
+        :param new: Datas to write in. It will **replace** the old datas.
+        """
         self.obj = new
         self.text = str(new)
 
     def get(self) -> dict | list:
+        """
+        Return all the datas.
+        """
         return self.obj
 
     def store(self) -> None:
-        self.file.close()
+        """
+        Save file and close.
+        """
+        with open(self.path, mode="w", encoding="utf-8") as file:
+            file.write(self.text)
 
 
 class QuickAccess:
@@ -49,14 +60,20 @@ class QuickAccess:
     """
     @staticmethod
     def json_to_dict(path) -> dict:
-        f = JsonFile(path, "dict")
-        c = f.get()
-        f.store()
-        return c
+        """
+        Read json file and return the content.
+        """
+        file = JsonFile(path, "dict")
+        content = file.get()
+        file.store()
+        return content
 
     @staticmethod
     def json_to_list(path) -> list:
-        f = JsonFile(path, "list")
-        c = f.get()
-        f.store()
-        return c
+        """
+        Read json file and return the content.
+        """
+        file = JsonFile(path, "list")
+        content = file.get()
+        file.store()
+        return content

@@ -1,6 +1,8 @@
+"""
+Provide I18N Interface.
+"""
 import locale
 import os.path
-
 import jsonparse
 
 
@@ -16,10 +18,10 @@ lang_dict = dict(jsonparse.QuickAccess.json_to_dict(file_path))
 en_lang_dict = dict(jsonparse.QuickAccess.json_to_dict(en_file_path))
 
 
-def _(s):
-    result: str = lang_dict.get(s)
+def _(string):
+    result: str = lang_dict.get(string)
     if result is None:
-        result = en_lang_dict.get(s)
+        result = en_lang_dict.get(string)
         if result is None:
-            result = s
+            result = string
     return result
