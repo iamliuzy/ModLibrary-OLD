@@ -21,10 +21,10 @@ class App:
         self.homepage_panel.place(x=50, y=0,
                                   width=self.root.winfo_width()-50,
                                   relheight=1.0)
-        self.homepage_searchbox_text = tk.StringVar()
-        self.homepage_searchbox_entry = ttk.Entry(master=self.homepage_panel,
-                                                  textvariable=self.homepage_searchbox_text)
-        self.homepage_searchbox_entry.place(relx=0.01, y=0, relwidth=0.98, height=30)
+        self.homepage_search_box_text = tk.StringVar()
+        self.homepage_search_box_entry = ttk.Entry(master=self.homepage_panel,
+                                                   textvariable=self.homepage_search_box_text)
+        self.homepage_search_box_entry.place(relx=0.01, y=0, relwidth=0.98, height=30)
 
     def init_sidebar(self):
         """

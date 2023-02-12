@@ -7,11 +7,11 @@ from pathlib import PurePath
 import json
 
 
-
 class JsonFile:
     """
     Json file object
     """
+
     def __init__(self, path: PurePath, filetype="") -> None:
         """
         :param filetype: Data type of the file, should be "dict" or "list".
@@ -25,7 +25,7 @@ class JsonFile:
             elif self.text.startswith("["):
                 filetype = list
             else:
-                raise TypeError("Unkdown json file type: " + self.path + ".")
+                raise TypeError("Unknown json file type: " + self.path + ".")
 
         if filetype == "list":
             self.obj = list(json.loads(self.text))
