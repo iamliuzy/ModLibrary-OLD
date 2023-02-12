@@ -30,16 +30,12 @@ class App:
         self.homepage_search_box_text = tk.StringVar()
         self.homepage_search_box_entry = ttk.Entry(master=self.homepage_panel,
                                                    textvariable=self.homepage_search_box_text)
-        self.homepage_search_box_entry.place(relx=0.01, y=0, relwidth=0.98, height=30)
-        self.homepage_search_box_text = tk.StringVar()
-        self.homepage_search_box_entry = ttk.Entry(self.homepage_panel,
-                                                   textvariable=self.homepage_search_box_text)
-        self.homepage_search_box_entry.place(x=0, y=0, width=self.root.winfo_width() - 75, height=30)
+        self.homepage_search_box_entry.place(x=0, y=0, width=self.root.winfo_width() - 80, height=30)
         self.homepage_add_button = ttk.Button(self.homepage_panel,
-                                              text="aaa",
-                                              command=None)
-        self.homepage_add_button.place(x=self.root.winfo_width() - 50 - self.homepage_search_box_entry.winfo_width(),
-                                       y=0, width=25, height=30)
+                                              text="+",
+                                              command=self.add_mod)
+        self.homepage_add_button.place(x=self.homepage_panel.winfo_width() - 30,
+                                       y=0, width=30, height=30)
 
     def init_sidebar(self):
         """
