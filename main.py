@@ -1,28 +1,18 @@
-"""
-Main program.
-"""
-
 import tkinter as tk
 from tkinter import ttk
 import tkinter.filedialog
 import constants
 import lang
 import jsonparse
+import mods
 
 
 class App:
-    """
-    Main program.
-    """
-
     def add_mod(self):
         tkinter.filedialog.askopenfilenames(title=lang._("homepage.add_mod.title"),
                                             filetypes=[("Mod", "*.jar")])
 
     def init_homepage(self):
-        """
-        Init homepage widgets.
-        """
         self.homepage_panel = tk.Frame(self.root)
         self.homepage_panel.place(x=50, y=0,
                                   width=self.root.winfo_width() - 50,
@@ -38,9 +28,6 @@ class App:
                                        y=0, width=30, height=30)
 
     def init_sidebar(self):
-        """
-        Init sidebar widgets.
-        """
         self.sidebar_panel = tk.Frame(self.root)
         self.sidebar_panel.place(x=0, y=0, width=50,
                                  relheight=1.0)
