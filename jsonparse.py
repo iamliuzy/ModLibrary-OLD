@@ -53,6 +53,7 @@ class QuickAccess:
     """
     Provide quick access for a json file.
     """
+
     @staticmethod
     def json_to_dict(path) -> dict:
         """
@@ -66,3 +67,16 @@ class QuickAccess:
         Read json file and return the content.
         """
         return list(JsonFile(path, "list").get())
+
+
+class ManifestAccess:
+    @staticmethod
+    def manifest_to_dict(path):
+        result = {}
+        with open(abspath(path), mode="r", encoding="utf-8") as file:
+            for line in file.readlines():
+                split = line.split(":")
+                key = split[0]
+                value = split[1].replace(" ", "")
+                result[key] = value
+        return result
