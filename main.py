@@ -9,22 +9,23 @@ import mods
 
 class App:
     def add_mod(self):
-        tkinter.filedialog.askopenfilenames(title=lang._("homepage.add_mod.title"),
-                                            filetypes=[("Mod", "*.jar")])
+        for file in tkinter.filedialog.askopenfilenames(title=lang._("homepage.add_mod.title"),
+                                                        filetypes=[("ModFile", "*.jar")]):
+            mod_file = mods.ModFile(file)
 
     def init_homepage(self):
         self.homepage_panel = tk.Frame(self.root)
         self.homepage_panel.place(x=50, y=0,
-                                  width=self.root.winfo_width() - 50,
+                                  width=self.width - 50,
                                   relheight=1.0)
         self.homepage_search_box_text = tk.StringVar()
         self.homepage_search_box_entry = ttk.Entry(master=self.homepage_panel,
                                                    textvariable=self.homepage_search_box_text)
-        self.homepage_search_box_entry.place(x=0, y=0, width=self.root.winfo_width() - 80, height=30)
+        self.homepage_search_box_entry.place(x=0, y=0, width=self.width - 80, height=30)
         self.homepage_add_button = ttk.Button(self.homepage_panel,
                                               text="+",
                                               command=self.add_mod)
-        self.homepage_add_button.place(x=self.homepage_panel.winfo_width() - 30,
+        self.homepage_add_button.place(x=self.width - 80,
                                        y=0, width=30, height=30)
 
     def init_sidebar(self):
@@ -41,8 +42,11 @@ class App:
     def __init__(self):
         self.root = tk.Tk(constants.NAME)
         self.root.title(constants.NAME + " " + constants.VERSION)
-        self.root.geometry("720x480+200+200")
+        self.root.geometry("720x480")
+        self.width = 720
+        self.height = 480
         self.settings = jsonparse.QuickAccess.json_to_dict(".\\settings.json")
+        self.mods = jsonparse.QuickAccess.json_to_list(".\\mods.json")
         if self.settings.get("default_page") == 0:
             self.init_homepage()
         elif self.settings.get("default_page") == 1:
