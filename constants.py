@@ -1,7 +1,7 @@
 """
 Constant definitions.
 """
-
+from os import getenv
 
 LICENSE_TEXT = """
                ModLibrary, a Minecraft mod manager.
@@ -25,3 +25,4 @@ LICENSE_TEXT = """
 
 NAME = "ModLibrary"
 VERSION = "preview"
+DEBUG = bool(getenv("DEBUG"))
