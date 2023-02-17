@@ -2,9 +2,9 @@
 Json file access API.
 """
 
-import os.path
+from os.path import abspath
 from pathlib import PurePath
-import json
+from json import loads, dumps
 
 
 class JsonFile:
@@ -14,44 +14,39 @@ class JsonFile:
 
     def __init__(self, path: PurePath, filetype="") -> None:
         """
+        :param path: Path of the file.
         :param filetype: Data type of the file, should be "dict" or "list".
+        :raise TypeError: If didn't give parameter "filetype" and cannot determine the data type.
         """
-        self.path = os.path.abspath(path)
+        self.path = abspath(path)
         with open(self.path, "r", encoding="utf-8") as file:
-            self.text = file.read()
+            text = file.read()
         if filetype == "":
-            if self.text.startswith("{"):
+            if text.startswith("{"):
                 filetype = "dict"
-            elif self.text.startswith("["):
-                filetype = list
+            elif text.startswith("["):
+                filetype = "list"
             else:
                 raise TypeError("Unknown json file type: " + self.path + ".")
 
         if filetype == "list":
-            self.obj = list(json.loads(self.text))
+            self.obj = list(loads(text))
         elif filetype == "dict":
-            self.obj = dict(json.loads(self.text))
-
-    def edit(self, new: list | dict) -> None:
-        """
-        Edit the json file.
-        :param new: Datas to write in. It will **replace** the old datas.
-        """
-        self.obj = new
-        self.text = str(new)
+            self.obj = dict(loads(text))
 
     def get(self) -> dict | list:
         """
-        Return all the datas.
+        :return: All data.
         """
         return self.obj
 
-    def store(self) -> None:
+    def store(self, new: dict | list) -> None:
         """
         Save file and close.
+        :param new: New data. It will replace old data.
         """
         with open(self.path, mode="w", encoding="utf-8") as file:
-            file.write(self.text)
+            file.write(dumps(new))
 
 
 class QuickAccess:
@@ -63,17 +58,11 @@ class QuickAccess:
         """
         Read json file and return the content.
         """
-        file = JsonFile(path, "dict")
-        content = file.get()
-        file.store()
-        return content
+        return dict(JsonFile(path, "dict").get())
 
     @staticmethod
     def json_to_list(path) -> list:
         """
         Read json file and return the content.
         """
-        file = JsonFile(path, "list")
-        content = file.get()
-        file.store()
-        return content
+        return list(JsonFile(path, "list").get())
