@@ -23,9 +23,9 @@ class ModFile:
     def __init__(self, path: PurePath):
         self.path = abspath(path)
         self.file = zipfile.ZipFile(self.path, mode="r")
-        jar_manifest = self.file.extract("META-INF/MANIFEST.MF")
         with tempfile.TemporaryDirectory() as tempdir:
         #   try:
+                jar_manifest = self.file.extract("META-INF/MANIFEST.MF", tempdir)
                 extracted = self.file.extract("META-INF/mods.toml", tempdir)
                 self.metadata = toml.load(extracted)
                 self.loader = 1  # Forge new loader
