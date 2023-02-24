@@ -1,4 +1,5 @@
 import tkinter as tk
+from pathlib import PurePath
 from tkinter import ttk
 import tkinter.filedialog
 import constants
@@ -11,7 +12,7 @@ class App:
     def add_mod(self):
         for file in tkinter.filedialog.askopenfilenames(title=lang._("homepage.add_mod.title"),
                                                         filetypes=[("ModFile", "*.jar")]):
-            mod_file = mods.ModFile(file)
+            mod_file = mods.ModFile(PurePath(file))
 
     def init_homepage(self):
         self.homepage_panel = tk.Frame(self.root)
