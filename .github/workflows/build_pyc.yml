@@ -24,3 +24,8 @@ jobs:
     - name: Build with compileall
       run: |
         python -m compileall . -l -o 2
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: ModLibrary_pyc_${{ steps.get_hash.outputs.sha_short }}
+        path: __pycache__/
