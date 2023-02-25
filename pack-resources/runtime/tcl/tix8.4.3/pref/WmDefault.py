@@ -24,7 +24,7 @@ require Tix, but is Tix enabled.
 """
 
 import os, sys, traceback, string
-import tkMessageBox
+import tkinter.messagebox
 
 def setup(root, wm=''):
     """1) find the files and/or settings (::wm_default::setup).
@@ -37,7 +37,7 @@ def setup(root, wm=''):
             root.tk.eval("package require wm_default")
         except:
             # Try again with this directory on the Tcl/Tk path
-            dir = os.path.dirname (self.__file__)
+            dir = os.path.dirname(self.__file__)
             root.tk.eval('global auto_path; lappend auto_path {%s}' % dir)
             root.tk.eval("package require wm_default")
     except:
@@ -45,7 +45,7 @@ def setup(root, wm=''):
         text = "Error loading WmDefault\n"
         for line in traceback.format_exception(t,v,tb): text = text + line + '\n'
         try:
-            tkMessageBox.showerror ('WmDefault Error', text)
+            tkinter.messagebox.showerror('WmDefault Error', text)
         except:
             sys.stderr.write( text )
 
@@ -83,14 +83,14 @@ if __name__ == "__main__":
     if len(sys.argv) > 0:
         # Assume the name of the file containing the tixinspect Tcl source
         # is the same as argument on the command line with .tcl
-	dir = os.path.dirname(sys.argv[0])
+        dir = os.path.dirname(sys.argv[0])
     if not dir or not os.path.isdir(dir) or not os.path.isabs(dir):
         # Or, assume it's in the same directory as this one:
         dir = os.getcwd()
-    import Tkinter
-    root = Tkinter.Tk()
+    import tkinter
+    root = tkinter.Tk()
     setup(root)
     addoptions(root, {'foreground': 'red'})
     retval = getoptions(root)
-    print retval
+    print(retval)
 
