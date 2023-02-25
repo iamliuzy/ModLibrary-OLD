@@ -14,10 +14,6 @@ jobs:
     - name: Copy pack resources into pack folder
       run: |
         xcopy pack-resources dist\ /E /Y
-    - name: Install dependencies
-      run: |
-        ./dist/runtime/Scripts/pip.exe install --upgrade pip
-        ./dist/runtime/Scripts/pip.exe install -r requirements.txt
     - name: Build with compileall
       run: |
         .\dist\runtime\python.exe -m compileall . -l -o 2
