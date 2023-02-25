@@ -11,26 +11,16 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[build.skip]')"
     steps:
     - uses: actions/checkout@v3
-    - name: Prepare build.
+    - name: Copy pack resources into pack folder
       run: |
-        mkdir dist
-        cd dist
-        mkdir runtime
-        cd..
-        cd..
-    - name: Set up Python 3.10
-      uses: gamedev-thingy/Download-Extract@done
-      with:
-        url: https://www.python.org/ftp/python/3.11.2/python-3.11.2-embed-win32.zip
-        destination: ./dist/runtime
-        ZIPname: python_embed_runtime_win32
+        xcopy pack-resources dist\ /E /Y
     - name: Install dependencies
       run: |
         ./dist/runtime/python.exe -m pip install --upgrade pip
         ./dist/runtime/python.exe -m pip install -r requirements.txt
     - name: Build with compileall
       run: |
-        python -m compileall . -l -o 2
+        .\dist\runtime\python.exe -m compileall . -l -o 2
         cd __pycache__
         set "str=.cpython-310.opt-2"
         setlocal EnableDelayedExpansion
