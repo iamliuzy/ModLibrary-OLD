@@ -16,12 +16,8 @@ jobs:
         xcopy pack-resources dist\ /E /Y
     - name: Build with compileall
       run: .\build.bat
-    - name: Get latest commit hash
-      id: get_hash
-      shell: cmd
-      run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: ModLibrary-PYC-${{ steps.get_hash.outputs.sha_short }}
+        name: ModLibrary-PYC-$(git rev-parse --short HEAD)
         path: dist\
