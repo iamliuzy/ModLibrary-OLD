@@ -37,7 +37,7 @@ def setup(root, wm=''):
             root.tk.eval("package require wm_default")
         except:
             # Try again with this directory on the Tcl/Tk path
-            dir = os.path.dirname(self.__file__)
+            dir = os.path.dirname(__file__)
             root.tk.eval('global auto_path; lappend auto_path {%s}' % dir)
             root.tk.eval("package require wm_default")
     except:
