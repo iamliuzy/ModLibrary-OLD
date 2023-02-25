@@ -16,8 +16,8 @@ jobs:
         xcopy pack-resources dist\ /E /Y
     - name: Install dependencies
       run: |
-        ./dist/runtime/python.exe -m pip install --upgrade pip
-        ./dist/runtime/python.exe -m pip install -r requirements.txt
+        ./dist/runtime/Scripts/pip.exe install --upgrade pip
+        ./dist/runtime/Scripts/pip.exe install -r requirements.txt
     - name: Build with compileall
       run: |
         .\dist\runtime\python.exe -m compileall . -l -o 2
