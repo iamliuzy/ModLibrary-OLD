@@ -30,7 +30,14 @@ jobs:
         ./dist/runtime/python.exe -m pip install -r requirements.txt
     - name: Build with compileall
       run: |
-        ./dist/runtime/python.exe -m compileall . -l -o 2
+        python -m compileall . -l -o 2
+        cd __pycache__
+        set "str=.cpython-310.opt-2"
+        setlocal EnableDelayedExpansion
+        for /f "delims=" %%i in ('dir /b *.cpython-310.opt-2.pyc') do (
+        set "var=%%i" & ren "%%i" "!var:%str%=!")
+        cd ..
+        xcopy __pycache__ dist\ /E /Y
     - name: Get latest commit hash
       id: get_hash
       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -38,4 +45,4 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: ModLibrary-PYC-${{ steps.get_hash.outputs.sha_short }}
-        path: __pycache__/
+        path: dist\
