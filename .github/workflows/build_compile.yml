@@ -15,14 +15,7 @@ jobs:
       run: |
         xcopy pack-resources dist\ /E /Y
     - name: Build with compileall
-      run: |
-        .\dist\runtime\python.exe -m compileall . -l -o 2
-        cd __pycache__
-        set "str=.cpython-310.opt-2"
-        setlocal EnableDelayedExpansion
-        for (/f "delims=" %%i in 'dir /b *.cpython-310.opt-2.pyc'){set "var=%%i" & ren "%%i" "!var:%str%=!"}
-        cd ..
-        xcopy __pycache__ dist\ /E /Y
+      run: .\build.bat
     - name: Get latest commit hash
       id: get_hash
       run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
