@@ -29,6 +29,7 @@ class ModFile:
                 extracted = self.file.extract("META-INF/mods.toml", tempdir)
                 self.metadata = toml.load(extracted)
                 self.loader = 1  # Forge new loader
+                manifest_dict = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest)
         #   except KeyError:
         #       try:
         #           extracted = self.file.extract("mcmod.info", tempdir)
@@ -54,7 +55,7 @@ class ModFile:
                 if i[0] != "_":
                     log.debug(i + "::" + str(getattr(self, i)))
             if self.version == "${file.jarVersion}":
-                ver = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest).get("Implementation-Version")
+                ver = manifest_dict.get("Implementation-Version")
                 if ver is not None:
                     self.version = ver
                 else:
