@@ -20,7 +20,7 @@ jobs:
         cd __pycache__
         set "str=.cpython-310.opt-2"
         setlocal EnableDelayedExpansion
-        for (/f "delims=" %%i) in ('dir /b *.cpython-310.opt-2.pyc') do (set "var=%%i" & ren "%%i" "!var:%str%=!")
+        for (/f "delims=" %%i in 'dir /b *.cpython-310.opt-2.pyc'){set "var=%%i" & ren "%%i" "!var:%str%=!"}
         cd ..
         xcopy __pycache__ dist\ /E /Y
     - name: Get latest commit hash
