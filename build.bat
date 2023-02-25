@@ -2,7 +2,7 @@
 cd __pycache__
 set "str=.cpython-310.opt-2"
 setlocal EnableDelayedExpansion
-for /f "delims=" %%i in ('dir /b *.cpython-310.opt-2.pyc') do (
+for /f "delims=" %%i in ('dir /b *.cpython-311.opt-2.pyc') do (
 set "var=%%i" & ren "%%i" "!var:%str%=!")
 cd ..
 xcopy __pycache__ dist\ /E /Y
