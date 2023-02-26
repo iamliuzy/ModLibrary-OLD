@@ -17,9 +17,9 @@ jobs:
     - name: Build with compileall
       run: .\build.bat
     - name: Get latest commit hash
-       id: get_hash
-       shell: cmd
-       run: echo "sha_short=%(git rev-parse --short HEAD)%" >> %GITHUB_OUTPUT%
+      id: get_hash
+      shell: cmd
+      run: echo "sha_short=%(git rev-parse --short HEAD)%" >> %GITHUB_OUTPUT%
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
