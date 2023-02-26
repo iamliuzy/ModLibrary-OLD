@@ -23,7 +23,7 @@ jobs:
         python -m compileall . -l -o 2
         cp -pr __pycache__/* dist/
         cd dist
-        rename .cpython-311.opt-2.pyc .pyc *.cpython-311.opt-2.pyc
+        man rename
         cd ..
     - name: Get latest commit hash
       id: get_hash
