@@ -1,0 +1,8 @@
+[project]
+name = "ModLibrary"
+version = "preview"
+description = "A Minecraft mod manager."
+
+[tool.distutils.build_exe]
+excludes = ["unittest"]
+zip_include_packages = ["encodings"]
