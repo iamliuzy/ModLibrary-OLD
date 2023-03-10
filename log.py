@@ -17,13 +17,15 @@ class LogLevel:
 
 def log(s: str, level=LogLevel.info):
     time = datetime.datetime.today().strftime("%c")
+    result_debug = ""
     result = ""
-    result = result + "[" + time + "]" + "(" + level + ")"
-    result = result + " " + s
-    if (not level == LogLevel.debug) or constants.DEBUG:
-        print(result)
+    result_debug = result_debug + "[" + time + "]" + "(" + level + ")"
+    result_debug = result_debug + " " + s
+    if not level == LogLevel.debug:
+        result = result + "[" + time + "]" + "(" + level + ")"
+        result = result + " " + s
     logfile.write(result + linesep)
-    debug_logfile.write(result + linesep)
+    debug_logfile.write(result_debug + linesep)
 
 
 def debug(s: str):
