@@ -18,6 +18,8 @@ Constant definitions.
 #  along with this program.  If not, see https://www.gnu.org/licenses/.
 
 from os import getenv
+from os.path import abspath
+import toml
 
 LICENSE_TEXT = """
                ModLibrary, a Minecraft mod manager.
@@ -39,6 +41,9 @@ LICENSE_TEXT = """
                E-mail: liuzhiyu.sh@outlook.com
                """
 
-NAME = "ModLibrary"
-VERSION = "preview"
-DEBUG = bool(getenv("DEBUG"))
+_toml = toml.load(open(abspath(".\\pyproject.toml"), encoding="utf-8"))
+_project = _toml.get("project")
+NAME = _project.get("name")
+VERSION = _project.get("version")
+DESCRIPTION = _project.get("description")
+DEBUG = bool(getenv("MODLIB_DEBUG"))
