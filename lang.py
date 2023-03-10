@@ -6,7 +6,8 @@ import os.path
 import jsonparse
 
 
-local = locale.getdefaultlocale()[0].lower() + ".json"
+locale.setlocale(locale.LC_ALL, '')
+local = locale.getlocale()[0].lower() + ".json"
 lang_path = os.path.abspath(".\\lang")
 file_path = os.path.join(lang_path, local)
 en_file_path = os.path.join(lang_path, "en_us.json")
