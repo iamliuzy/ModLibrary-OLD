@@ -17,13 +17,12 @@ Provide I18N Interface.
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see https://www.gnu.org/licenses/.
 
-import locale
+import _locale
 import os.path
 import jsonparse
 
 
-locale.setlocale(locale.LC_ALL, '')
-local = locale.getlocale()[0].lower() + ".json"
+local = _locale._getdefaultlocale()[0].lower() + ".json"
 lang_path = os.path.abspath(".\\lang")
 file_path = os.path.join(lang_path, local)
 en_file_path = os.path.join(lang_path, "en_us.json")
