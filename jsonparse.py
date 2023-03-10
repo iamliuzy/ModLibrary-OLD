@@ -91,6 +91,9 @@ class ManifestAccess:
         result = {}
         with open(abspath(path), mode="r", encoding="utf-8") as file:
             for line in file.readlines():
+                if not (":" in line):
+                    continue
+
                 split = line.split(":")
                 key = split[0]
                 value = split[1].replace(" ", "")
