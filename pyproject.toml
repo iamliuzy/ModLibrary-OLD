@@ -1,7 +1,10 @@
 [project]
 name = "ModLibrary"
-version = "preview"
-description = "A Minecraft mod manager."
+version = "0.0.1dev1"
+description = "A Minecraft mod manager"
+author = "iamliuzy"
+author_email = "liuzhiyu.sh@outlook.com"
+license_files = "LICENSE.md"
 
 [tool.distutils.build_exe]
 excludes = ["unittest"]
