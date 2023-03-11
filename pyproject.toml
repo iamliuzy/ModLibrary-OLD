@@ -6,4 +6,4 @@ description = "A Minecraft mod manager"
 [tool.distutils.build_exe]
 excludes = ["unittest"]
 zip_include_packages = ["encodings"]
-include_files = ["LICENSE.md", "mods.json", "pyproject.toml", "requirements.txt", "settings.json", "lang/"]
+include_files = ["LICENSE", "mods.json", "pyproject.toml", "requirements.txt", "settings.json", "lang/"]
