@@ -54,3 +54,36 @@ jobs:
       with:
         name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.commit }}
         path: ./build/
+
+  ci-unix:
+    name: Python CI for Unix-Like systems
+    runs-on: windows-latest
+    if: "!contains(github.event.head_commit.message, '[ci.skip]')"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4.5.0
+      with:
+        python-version: "3.11"
+    - name: Get pack resources
+      id: get-resources
+      uses: SebRollen/toml-action@v1.0.2
+      with:
+        file: pyproject.toml
+        field: tool.distutils.build_exe.include_files
+    - name: Install dependencies and build
+      shell: cmd
+      run: |
+        pip install -r requirements.txt
+        python -m compileall . -l -o 2
+        cd __pycache__
+        set "str=.cpython-310.opt-2"
+        setlocal EnableDelayedExpansion
+        for /f "delims=" %%i in ('dir /b *.cpython-311.opt-2.pyc') do (
+        set "var=%%i" & ren "%%i" "!var:%str%=!")
+        cd ..
+        xcopy __pycache__ dist\ /E /Y
+        
+    - name: Get commit hash
+      id: get_commit
+      run: echo "::set-output name=commit::$(git rev-parse --short HEAD)"
