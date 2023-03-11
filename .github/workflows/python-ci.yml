@@ -48,11 +48,11 @@ jobs:
         python setup.py build
     - name: Get commit hash
       id: get_commit
-      run: echo "::set-output name=commit::$(git rev-parse --short HEAD)"
+      run: echo "sha=git rev-parse --short HEAD" >> $GITHUB_OUTPUT
     - name: Upload build artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.commit }}
+        name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.sha }}
         path: ./build/
 
   ci-unix:
@@ -77,12 +77,15 @@ jobs:
         pip install -r requirements.txt
         python -m compileall . -l -o 2
         cd __pycache__
-        set "str=.cpython-310.opt-2"
+        set "str=.cpython-*.opt-2"
         setlocal EnableDelayedExpansion
-        for /f "delims=" %%i in ('dir /b *.cpython-311.opt-2.pyc') do (
+        for /f "delims=" %%i in ('dir /b *.cpython-*.opt-2.pyc') do (
         set "var=%%i" & ren "%%i" "!var:%str%=!")
         cd ..
         xcopy __pycache__ dist\ /E /Y
+        
+    - name: Copy pack resources
+      shell: cmd
         
     - name: Get commit hash
       id: get_commit
