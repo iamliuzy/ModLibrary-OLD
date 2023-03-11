@@ -33,7 +33,7 @@ lang_dict = dict(jsonparse.QuickAccess.json_to_dict(file_path))
 en_lang_dict = dict(jsonparse.QuickAccess.json_to_dict(en_file_path))
 
 
-def _(string):
+def trans(string):
     result: str = lang_dict.get(string)
     if result is None:
         result = en_lang_dict.get(string)
