@@ -83,10 +83,7 @@ jobs:
         set "var=%%i" & ren "%%i" "!var:%str%=!")
         cd ..
         xcopy __pycache__ dist\ /E /Y
-        
-    - name: Copy pack resources
-      shell: cmd
-        
+        python after_build.py
     - name: Get commit hash
       id: get_commit
-      run: echo "::set-output name=commit::$(git rev-parse --short HEAD)"
+      run: echo "sha=git rev-parse --short HEAD" >> $GITHUB_OUTPUT
