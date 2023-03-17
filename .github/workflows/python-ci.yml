@@ -57,7 +57,7 @@ jobs:
 
   ci-unix:
     name: Python CI for Unix-Like systems
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
     steps:
     - uses: actions/checkout@v3
@@ -69,9 +69,6 @@ jobs:
       run: |
         pip install -r requirements.txt
         python build_pyc.py
-        ls -a
-        cd dist_pyc
-        ls -a
     - name: Get commit hash
       id: get_commit
       uses: pr-mpt/actions-commit-hash@v2
