@@ -69,7 +69,6 @@ jobs:
       run: |
         pip install -r requirements.txt
         python build_pyc.py
-        cd dist_pyc
         ls -a
     - name: Get commit hash
       id: get_commit
