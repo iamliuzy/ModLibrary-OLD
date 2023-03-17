@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  ci-windows-64:
+  ci-windows-x64:
     name: Python CI for Windows 64bit
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
@@ -30,7 +30,7 @@ jobs:
       with:
         name: ModLibrary-build-win-64-${{ steps.get_commit.outputs.short }}
         path: ./build/
-  ci-windows-32:
+  ci-windows-x86:
     name: Python CI for Windows 32bit
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
@@ -57,7 +57,7 @@ jobs:
 
   ci-unix:
     name: Python CI for Unix-Like systems
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
     steps:
     - uses: actions/checkout@v3
@@ -66,10 +66,14 @@ jobs:
       with:
         python-version: "3.11"
     - name: Install dependencies and build
-      shell: cmd
       run: |
         pip install -r requirements.txt
         python build_pyc.py
     - name: Get commit hash
       id: get_commit
       uses: pr-mpt/actions-commit-hash@v2
+    - name: Upload build artifact.
+      uses: actions/upload-artifact@v3.1.2
+      with: 
+        name: ModLibrary-pyc-${{ steps.get_commit.outputs.short }}
+        path: ./dist_pyc/
