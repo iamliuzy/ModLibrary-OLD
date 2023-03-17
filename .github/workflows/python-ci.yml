@@ -52,7 +52,7 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.sha }}
+        name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.short }}
         path: ./build/
 
   ci-unix:
