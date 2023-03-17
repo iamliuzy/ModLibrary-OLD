@@ -2,10 +2,8 @@
 name = "ModLibrary"
 version = "0.0.1dev1"
 description = "A Minecraft mod manager"
-author = "iamliuzy"
-author_email = "liuzhiyu.sh@outlook.com"
-license_files = "LICENSE.md"
 
 [tool.distutils.build_exe]
 excludes = ["unittest"]
 zip_include_packages = ["encodings"]
+include_files = ["LICENSE", "mods.json", "pyproject.toml", "requirements.txt", "settings.json", "lang/", "README.md", "README_zh_cn.md"]

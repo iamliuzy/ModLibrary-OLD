@@ -11,3 +11,5 @@ English | [简体中文](https://github.com/iamliuzy/ModLibrary/blob/dev/main/RE
 - [ ] View different files of one mod in one place.
 - [ ] View mod dependencies.
 - [ ] Search mods.
+
+This program is released under GNU General Public License Version 3.

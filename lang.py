@@ -1,13 +1,12 @@
-"""
-Provide I18N Interface.
-"""
 #  ModLibrary, a Minecraft mod manager.
 #  Copyright (C) 2023 iamliuzy
+#
+#  This file is part of ModLibrary.
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation, either version 3 of the License, or
-#  (at your option) any later version.
+#   any later version.
 #
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -34,7 +33,7 @@ lang_dict = dict(jsonparse.QuickAccess.json_to_dict(file_path))
 en_lang_dict = dict(jsonparse.QuickAccess.json_to_dict(en_file_path))
 
 
-def _(string):
+def trans(string):
     result: str = lang_dict.get(string)
     if result is None:
         result = en_lang_dict.get(string)

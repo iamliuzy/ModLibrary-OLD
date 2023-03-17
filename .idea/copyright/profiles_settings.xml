@@ -1,7 +1,7 @@
 <component name="CopyrightManager">
   <settings>
     <module2copyright>
-      <element module="Open Files" copyright="GNU GPL 3.0 for ModLibrary" />
+      <element module="Project Files" copyright="GNU GPL 3.0 for ModLibrary" />
     </module2copyright>
   </settings>
 </component>
