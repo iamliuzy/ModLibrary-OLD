@@ -20,7 +20,7 @@ pycpath = pathlib.Path(pycpath_str)
 if pycpath.exists():
     shutil.rmtree(pycpath)
 mkdir(pycpath_str)
-compile_excludes = ["setup.py", "build_pyc.py"]
+compile_excludes = [r"setup\.py", r"build_pyc\.py"]
 excludes_regex = ""
 index = 0
 for exclude in compile_excludes:
