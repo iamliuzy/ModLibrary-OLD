@@ -24,11 +24,12 @@ jobs:
         python setup.py build
     - name: Get commit hash
       id: get_commit
-      run: echo "::set-output name=commit::$(git rev-parse --short HEAD)"
+      shell: cmd
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
     - name: Upload build artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: ModLibrary-build-win-64-${{ steps.get_commit.outputs.commit }}
+        name: ModLibrary-build-win-64-${{ steps.get_commit.outputs.sha }}
         path: ./build/
   ci-windows-32:
     name: Python CI for Windows 32bit
@@ -48,7 +49,8 @@ jobs:
         python setup.py build
     - name: Get commit hash
       id: get_commit
-      run: echo "sha=git rev-parse --short HEAD" >> $GITHUB_OUTPUT
+      shell: cmd
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
     - name: Upload build artifact
       uses: actions/upload-artifact@v3.1.2
       with:
@@ -86,4 +88,4 @@ jobs:
         python after_build.py
     - name: Get commit hash
       id: get_commit
-      run: echo "sha=git rev-parse --short HEAD" >> $GITHUB_OUTPUT
+      run: echo "sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
