@@ -76,4 +76,4 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with: 
         name: ModLibrary-pyc-${{ steps.get_commit.outputs.short }}
-        path: .\dist_pyc\
+        path: dist_pyc\
