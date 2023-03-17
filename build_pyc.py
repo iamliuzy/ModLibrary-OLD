@@ -37,7 +37,6 @@ for f in pycpath.iterdir():
         f.rename(m.group(1) + ".pyc")
 for f in pycpath.iterdir():
         shutil.copy(f, distdir + str(f).replace(str(pycpath_str), ""))
-        print("Copied file {1} to {2}".format(str(f), distdir))
 
 def copydir(path: pathlib.Path):
     """
@@ -49,7 +48,6 @@ def copydir(path: pathlib.Path):
             copydir(file)
         else:
             shutil.copy(file, distdir + str(file).replace(abspath("."), ""))
-            print("Copied file {1} to {2}".format(str(file), distdir))
 
 """
 Copy resources files.
