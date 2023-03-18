@@ -45,7 +45,7 @@ class HomePage(Page):
         self.search_box_entry.place(x=0, y=0, width=self.window_width - 80, height=30)
         self.add_button = ttk.Button(self.panel,
                                      text="+",
-                                     command=None)
+                                     command=self.add_mod)
         self.add_button.place(x=self.window_width - 80,
                               y=0, width=30, height=30)
 
