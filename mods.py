@@ -84,7 +84,14 @@ class ModFile:
 class Mod:
     files: list[ModFile]
     mod_id: str
+    json: str
 
     def __init__(self, files: list[ModFile]):
         self.files = files
         self.mod_id = self.files[0].id
+        self.name = self.files[0].name
+        self.description = self.files[0].description
+        self.json = '\{"id": {}, "name": {}, "description": {}\}'.format(self.mod_id, self.name, self.description)
+    
+    def __repr__(self) -> str:
+        return self.json

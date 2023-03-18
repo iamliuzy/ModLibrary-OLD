@@ -50,6 +50,12 @@ class HomePage(Page):
                               y=0, width=30, height=30)
 
     def add_mod(self):
+        files = []
         for file in tkinter.filedialog.askopenfilenames(title=lang.trans("homepage.add_mod.title"),
                                                         filetypes=[("ModFile", "*.jar")]):
-            mod_file = mods.ModFile(PurePath(file))
+            files.append(mods.ModFile(PurePath(file)))
+        if not files == []:
+            mods.Mod(files)
+        else:
+            return
+
