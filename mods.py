@@ -44,10 +44,10 @@ class ModFile:
         self.file = zipfile.ZipFile(self.path, mode="r")
         with tempfile.TemporaryDirectory() as tempdir:
             jar_manifest = self.file.extract("META-INF/MANIFEST.MF", tempdir)
-            self.metadata = toml.load(extracted)
             manifest_dict = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest)
         #   try:
             extracted = self.file.extract("META-INF/mods.toml", tempdir)
+            self.metadata = toml.load(extracted)
             self.loader = 1  # Forge new loader
         #   except KeyError:
         #       try:
