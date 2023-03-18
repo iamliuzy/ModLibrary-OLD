@@ -46,3 +46,14 @@ NAME = _project.get("name")
 VERSION = _project.get("version")
 DESCRIPTION = _project.get("description")
 DEBUG = bool(getenv("MODLIB_DEBUG"))
+
+
+class Namespace(object):
+    def __init__(self, **kwargs):
+        self.__dict__ = kwargs
+
+    def __setattr__(self, key, value):
+        self.__dict__[key] = value
+
+    def __getattr__(self, item):
+        return self.__dict__.get(item)
