@@ -70,15 +70,15 @@ class ModFile:
             except KeyError as e:
                 log.warn(str(e) + ' key does not exist in the mod info file of mod "' + str(self.path) + '".')
             log.debug(str(constants.DEBUG))
-            for i in dir(self):
-                if i[0] != "_":
-                    log.debug(i + "::" + str(getattr(self, i)))
             if self.version == "${file.jarVersion}":
                 ver = manifest_dict.get("Implementation-Version")
                 if ver is not None:
                     self.version = ver
                 else:
                     log.error('Cannot get version of mod "' + self.id + '".')
+            for i in dir(self):
+                if i[0] != "_":
+                    log.debug(i + "::" + str(getattr(self, i)))
 
 
 class Mod:
