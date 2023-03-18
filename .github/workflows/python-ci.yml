@@ -6,9 +6,12 @@ on:
       - main
 
 jobs:
-  ci-windows-x64:
+  ci-windows:
     name: Python CI for Windows 64bit
     runs-on: windows-latest
+    strategy:
+      matrix:
+        python_arch: ['x86', 'x64']
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
     steps: 
     - uses: actions/checkout@v3
@@ -16,7 +19,7 @@ jobs:
       uses: actions/setup-python@v4.5.0
       with:
         python-version: "3.11"
-        architecture: "x64"
+        architecture: ${{ matrix.python_arch }}
     - name: Install dependencies and build
       run: |
         pip install -r requirements.txt
@@ -30,33 +33,9 @@ jobs:
       with:
         name: ModLibrary-build-win-64-${{ steps.get_commit.outputs.short }}
         path: ./build/
-  ci-windows-x86:
-    name: Python CI for Windows 32bit
-    runs-on: windows-latest
-    if: "!contains(github.event.head_commit.message, '[ci.skip]')"
-    steps: 
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v4.5.0
-      with:
-        python-version: "3.11"
-        architecture: "x86"
-    - name: Install dependencies and build
-      run: |
-        pip install -r requirements.txt
-        pip install cx_Freeze
-        python setup.py build
-    - name: Get commit hash
-      id: get_commit
-      uses: pr-mpt/actions-commit-hash@v2
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3.1.2
-      with:
-        name: ModLibrary-build-win-32-${{ steps.get_commit.outputs.short }}
-        path: ./build/
 
-  ci-unix:
-    name: Python CI for Unix-Like systems
+  ci-pyc:
+    name: Python Simple CI
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[ci.skip]')"
     steps:
