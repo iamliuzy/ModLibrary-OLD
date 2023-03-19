@@ -45,7 +45,7 @@ class ModFile:
         with tempfile.TemporaryDirectory() as tempdir:
             jar_manifest = self.file.extract("META-INF/MANIFEST.MF", tempdir)
             manifest_dict = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest)
-        #   try:
+            #   try:
             extracted = self.file.extract("META-INF/mods.toml", tempdir)
             self.metadata = toml.load(extracted)
             self.loader = 1  # Forge new loader
@@ -84,14 +84,14 @@ class ModFile:
 class Mod:
     files: list[ModFile]
     mod_id: str
-    json: str
+    json: dict[str, str]
 
     def __init__(self, files: list[ModFile]):
         self.files = files
         self.mod_id = self.files[0].id
         self.name = self.files[0].name
         self.description = self.files[0].description
-        self.json = '{"id": "%s", "name": "%s", "description": "%s"}' % (self.mod_id, self.name, self.description)
-    
-    def __repr__(self) -> str:
+        self.json = {"id": self.mod_id, "name": self.name, }
+
+    def __repr__(self) -> dict[str, str]:
         return self.json
