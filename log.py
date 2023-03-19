@@ -19,8 +19,6 @@
 import datetime
 from os import linesep
 
-import constants
-
 logfile = open("latest.log", mode="w", encoding="utf-8")
 debug_logfile = open("latest_debug.log", mode="w", encoding="utf-8")
 

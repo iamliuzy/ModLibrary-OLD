@@ -20,7 +20,6 @@ import tkinter
 from pathlib import PurePath
 from tkinter import ttk
 import tkinter.filedialog
-import jsonparse
 import lang
 import mods
 
@@ -58,4 +57,3 @@ class HomePage(Page):
             mods.Mod(files)
         else:
             return
-
