@@ -1,4 +1,3 @@
-root = false
 [*]
 end_of_line = crlf
 insert_final_newline = true
