@@ -91,7 +91,7 @@ class Mod:
         self.mod_id = self.files[0].id
         self.name = self.files[0].name
         self.description = self.files[0].description
-        self.json = '\{"id": {}, "name": {}, "description": {}\}'.format(self.mod_id, self.name, self.description)
+        self.json = '{"id": "%s", "name": "%s", "description": "%s"}' % (self.mod_id, self.name, self.description)
     
     def __repr__(self) -> str:
         return self.json
