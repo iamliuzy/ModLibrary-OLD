@@ -45,7 +45,7 @@ def copy_dir(path: pathlib.Path):
     """
     mkdir(dist_dir + str(path).replace(abspath("."), ""))
     for fi in path.iterdir():
-        if file.is_dir():
+        if fi.is_dir():
             copy_dir(fi)
         else:
             shutil.copy(fi, dist_dir + str(file).replace(abspath("."), ""))
