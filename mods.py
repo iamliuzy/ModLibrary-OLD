@@ -26,17 +26,21 @@ import constants
 from os.path import abspath
 
 
-class ModFile:
+class ModFile(object):
     """
     Object for a Minecraft Mod File.
-    About attribute "loader":
-    | Loader     | No. |
-    |------------|-----|
-    | Forge(old) | 0   |
-    | Forge(new) | 1   |
-    | Fabric     | 2   |
+    Attributes:
+        loader: 0: Forge old Loader
+                1: Forge new Loader
+                2: Fabric Loader
+        path: Absolute path to the mod file.
+        file: ZipFile instance of the mod jar file.
+        manifest_dict: Jar manifest file(META-INF/MANIFEST.MF) stored in dict form.
+        metadata: Mod info file("META-INF/mods.toml" for Forge new, "mcmod.info" for Forge old and "fabric.mod.json" for
+                  Fabric loader) stored in dict form.
 
-    :param path: File path of mod file.
+    Args:
+        path: Path to the mod file.
     """
 
     def __init__(self, path: PurePath):
@@ -44,11 +48,12 @@ class ModFile:
         self.file = zipfile.ZipFile(self.path, mode="r")
         with tempfile.TemporaryDirectory() as tempdir:
             jar_manifest = self.file.extract("META-INF/MANIFEST.MF", tempdir)
-            manifest_dict = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest)
-            #   try:
+            self.manifest_dict = jsonparse.ManifestAccess.manifest_to_dict(jar_manifest)
+        #   try:
             extracted = self.file.extract("META-INF/mods.toml", tempdir)
             self.metadata = toml.load(extracted)
             self.loader = 1  # Forge new loader
+        # These codes will be uncommented soon.
         #   except KeyError:
         #       try:
         #           extracted = self.file.extract("mcmod.info", tempdir)
@@ -71,17 +76,20 @@ class ModFile:
                 log.warn(str(e) + ' key does not exist in the mod info file of mod "' + str(self.path) + '".')
             log.debug(str(constants.DEBUG))
             if self.version == "${file.jarVersion}":
-                ver = manifest_dict.get("Implementation-Version")
+                # Some mods may use ${file.jarVersion} to
+                # refer to the version number in the manifest
+                ver = self.manifest_dict.get("Implementation-Version")
                 if ver is not None:
                     self.version = ver
                 else:
-                    log.error('Cannot get version of mod "' + self.id + '".')
-            for i in dir(self):
+                    log.error('Cannot get version of mod "%s".' % self.name)
+                    # If the program cannot find version in both place, output an error.
+            for i in dir(self):  # Debug code. Will remove soon.
                 if i[0] != "_":
                     log.debug(i + "::" + str(getattr(self, i)))
 
 
-class Mod:
+class Mod(object):
     files: list[ModFile]
     mod_id: str
     json: dict[str, str]

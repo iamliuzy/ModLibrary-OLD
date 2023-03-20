@@ -23,7 +23,7 @@ logfile = open("latest.log", mode="w", encoding="utf-8")
 debug_logfile = open("latest_debug.log", mode="w", encoding="utf-8")
 
 
-class LogLevel:
+class LogLevel(object):
     debug = "DEBUG"
     info = "INFO"
     warn = "WARN"

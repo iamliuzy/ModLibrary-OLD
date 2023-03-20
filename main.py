@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #  ModLibrary, a Minecraft mod manager.
 #  Copyright (C) 2023 iamliuzy
 #
@@ -24,7 +25,10 @@ import jsonparse
 import interface
 
 
-class App:
+class App(object):
+    """
+    Main entrance
+    """
     def init_sidebar(self):
         self.sidebar_panel = tk.Frame(self.root)
         self.sidebar_panel.place(x=0, y=0, width=50,
@@ -54,4 +58,5 @@ class App:
         self.root.mainloop()
 
 
-App()
+if __name__ == "__main__":
+    App()

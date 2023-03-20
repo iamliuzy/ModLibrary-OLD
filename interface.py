@@ -24,7 +24,7 @@ import lang
 import mods
 
 
-class Page:
+class Page(object):
     def __init__(self, main_class):
         self.main_class = main_class
         self.root = main_class.root
