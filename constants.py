@@ -16,7 +16,6 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see https://www.gnu.org/licenses/.
 
-from os import getenv
 from os.path import abspath
 import toml
 
@@ -45,7 +44,6 @@ _project = _toml.get("project")
 NAME = _project.get("name")
 VERSION = _project.get("version")
 DESCRIPTION = _project.get("description")
-DEBUG = bool(getenv("MODLIB_DEBUG"))
 
 
 class Namespace(object):

@@ -74,7 +74,6 @@ class ModFile(object):
                 self.description = str(self.metadata["mods"][0]["description"])
             except KeyError as e:
                 log.warn(str(e) + ' key does not exist in the mod info file of mod "' + str(self.path) + '".')
-            log.debug(str(constants.DEBUG))
             if self.version == "${file.jarVersion}":
                 # Some mods may use ${file.jarVersion} to
                 # refer to the version number in the manifest
