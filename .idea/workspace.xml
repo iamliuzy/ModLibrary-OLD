@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ebd7fb8f-770f-4f3e-bc18-d267095c754e" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/__init__.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/oobe/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/README_zh_cn.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/lang/en_us.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pack_resources/lang/zh_cn.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CONTRIBUTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/CONTRIBUTING.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +56,7 @@
     "TODO_SCOPE": "所有位置",
     "last_opened_file_path": "E:/my/python_study/py/ModLibrary",
     "run.code.analysis.last.selected.profile": "aDefault",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui"
+    "settings.editor.selected.configurable": "vcs.Git"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -97,6 +82,9 @@
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\liuzh.DESKTOP-GPNBJNC\AppData\Roaming\Subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="ebd7fb8f-770f-4f3e-bc18-d267095c754e" name="变更" comment="" />
