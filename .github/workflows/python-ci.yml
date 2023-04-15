@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies and build
       run: |
         pip install -r requirements.txt
-        python build_pyc.py
+        build.bat
     - name: Get commit hash
       id: get_commit
       uses: pr-mpt/actions-commit-hash@v2
