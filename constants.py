@@ -39,11 +39,8 @@ LICENSE_TEXT = """
                E-mail: liuzhiyu.sh@outlook.com
                """
 
-_toml = toml.load(open(abspath(".\\pyproject.toml"), encoding="utf-8"))
-_project = _toml.get("project")
-NAME = _project.get("name")
-VERSION = _project.get("version")
-DESCRIPTION = _project.get("description")
+NAME = "ModLibrary"
+VERSION = "0.0.1dev1"
 
 
 class Namespace(object):
