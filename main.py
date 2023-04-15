@@ -16,7 +16,7 @@
 #
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see https://www.gnu.org/licenses/.
-
+import os.path
 import tkinter as tk
 from tkinter import ttk
 import constants
@@ -41,6 +41,11 @@ class App(object):
                                            height=50)
 
     def __init__(self):
+        if not os.path.exists(os.path.abspath(".\\settings.json")):
+            """
+            If the configuration file does not exist, it indicates that it is used for the first time.
+            """
+            import oobe  # Run OOBE module.
         self.root = tk.Tk(constants.NAME)
         self.root.title(constants.NAME + " " + constants.VERSION)
         self.root.geometry("720x480")
