@@ -23,41 +23,46 @@ from json import loads, dumps
 
 class JsonFile:
     """
-    Json file object
+    Provide access for a JSON file.
     """
 
-    def __init__(self, path: PurePath, filetype="") -> None:
+    def __init__(self, path: PurePath, filetype: str = "") -> None:
         """
-        :param path: Path of the file.
-        :param filetype: Data type of the file, should be "dict" or "list".
-        :raise TypeError: If didn't give parameter "filetype" and cannot determine the data type.
+        Create a new JsonFile instance.
+
+        :param path: Path to the JSON file.
+        :param filetype: Type of the JSON file.
+        :raises TypeError: If the filetype is not specified and cannot be determined.
+        :raises json.JSONDecodeError: If the JSON file contains invalid data.
         """
         self.path = abspath(path)
         with open(self.path, "r", encoding="utf-8") as file:
             text = file.read()
         if filetype == "":
-            if text.startswith("{"):
-                filetype = "dict"
-            elif text.startswith("["):
-                filetype = "list"
-            else:
-                raise TypeError("Unknown json file type: " + self.path + ".")
-
-        if filetype == "list":
+            try:
+                self.obj = loads(text)
+            except ValueError:
+                raise TypeError(f"Cannot determine the JSON file type: {self.path}")
+        elif filetype == "list":
             self.obj = list(loads(text))
         elif filetype == "dict":
             self.obj = dict(loads(text))
+        else:
+            raise ValueError(f"Unknown JSON file type: {filetype}")
 
     def get(self) -> dict | list:
         """
-        :return: All data.
+        Get the JSON data.
+
+        :return: The JSON data.
         """
         return self.obj
 
     def store(self, new: dict | list) -> None:
         """
-        Save file and close.
-        :param new: New data. It will replace old data.
+        Store the JSON data.
+
+        :param new: The new JSON data.
         """
         with open(self.path, mode="w", encoding="utf-8") as file:
             file.write(dumps(new))
@@ -84,16 +89,17 @@ class QuickAccess:
 
 
 class ManifestAccess:
+    """
+    Provide access for a manifest file.
+    """
+
     @staticmethod
     def manifest_to_dict(path):
         result = {}
         with open(abspath(path), mode="r", encoding="utf-8") as file:
-            for line in file.readlines():
+            for line in map(str.strip, file.readlines()):
                 if not (":" in line):
                     continue
-
-                split = line.split(":")
-                key = split[0]
-                value = split[1].replace(" ", "")
-                result[key] = value
+                key, value = line.split(":", maxsplit=1)
+                result[key] = value.strip()
         return result
