@@ -52,7 +52,6 @@ class App(object):
         self.width = 720
         self.height = 480
         self.settings = jsonparse.QuickAccess.json_to_dict(".\\settings.json")
-        self.mods = jsonparse.QuickAccess.json_to_list(".\\mods.json")
         self.interfaces = constants.Namespace()
         self.interfaces.homepage = interface.HomePage(self)
         if self.settings.get("default_page") == 0:
