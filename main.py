@@ -49,6 +49,7 @@ class App(object):
         self.root = tk.Tk(constants.NAME)
         self.root.title(constants.NAME + " " + constants.VERSION)
         self.root.geometry("720x480")
+        self.root.resizable(False, False)
         self.width = 720
         self.height = 480
         self.settings = jsonparse.QuickAccess.json_to_dict(".\\settings.json")

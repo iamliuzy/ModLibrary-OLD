@@ -1,5 +1,6 @@
 {
     "sidebar.download": "Download",
     "sidebar.home": "Home",
-    "homepage.add_mod.title": "Add mod..."
+    "homepage.add_mod.title": "Add mod...",
+    "oobe.welcome": "Welcome to ModLibrary"
 }
