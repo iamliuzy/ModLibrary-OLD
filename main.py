@@ -21,8 +21,8 @@ import tkinter as tk
 from tkinter import ttk
 import constants
 import lang
-import jsonparse
 import interface
+import settings_loader
 
 
 class App(object):
@@ -52,12 +52,11 @@ class App(object):
         self.root.resizable(False, False)
         self.width = 720
         self.height = 480
-        self.settings = jsonparse.QuickAccess.json_to_dict(".\\settings.json")
         self.interfaces = constants.Namespace()
         self.interfaces.homepage = interface.HomePage(self)
-        if self.settings.get("default_page") == 0:
+        if settings_loader.settings.get("default_page") == 0:
             self.interfaces.homepage.init()
-        elif self.settings.get("default_page") == 1:
+        elif settings_loader.settings.get("default_page") == 1:
             pass
         self.init_sidebar()
         self.root.mainloop()
