@@ -10,7 +10,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('README.md', '.'), ('LICENSE', '.'), ('README_zh_cn.md', '.'), ('lang' + os.pathsep, 'lang' + os.pathsep)],
+    datas=[('README.md', '.'), ('LICENSE', '.'), ('README_zh_cn.md', '.'), ('lang', 'lang' + os.pathsep)],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
