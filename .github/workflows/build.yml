@@ -1,13 +1,12 @@
-name: Build
+name: Build (PR)
 on: 
-  push:
   pull_request:
     branches:
       - main
 
 jobs:
   build:
-    name: Python CI
+    name: Python CI (PR)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,5 +33,5 @@ jobs:
     - name: Upload build artifact.
       uses: actions/upload-artifact@v3.1.2
       with: 
-        name: ModLibrary-pyc-${{ steps.get_commit.outputs.short }}
+        name: ModLibrary-${{ steps.get_commit.outputs.short }}-${{ matrix.os }}
         path: dist
