@@ -2,7 +2,7 @@
 A Minecraft mod manager.
 This program is now in development.
 
-English | [简体中文](https://github.com/iamliuzy/ModLibrary/blob/dev/main/README_zh_cn.md)
+> English | [简体中文](https://github.com/iamliuzy/ModLibrary/blob/dev/main/README_zh_cn.md)
 
 ## Progress
 
