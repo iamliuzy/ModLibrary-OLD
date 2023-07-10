@@ -22,7 +22,6 @@ from tkinter import ttk
 import constants
 import lang
 import interface
-import settings_loader
 
 
 class App(object):
@@ -46,6 +45,7 @@ class App(object):
             If the configuration file does not exist, it indicates that it is used for the first time.
             """
             import oobe  # Run OOBE module.
+        import settings
         self.root = tk.Tk(constants.NAME)
         self.root.title(constants.NAME + " " + constants.VERSION)
         self.root.geometry("720x480")
@@ -54,13 +54,14 @@ class App(object):
         self.height = 480
         self.interfaces = constants.Namespace()
         self.interfaces.homepage = interface.HomePage(self)
-        if settings_loader.settings.get("default_page") == 0:
+        if settings.settings.get("default_page") == 0:
             self.interfaces.homepage.init()
-        elif settings_loader.settings.get("default_page") == 1:
+        elif settings.settings.get("default_page") == 1:
             pass
         self.init_sidebar()
         self.root.mainloop()
 
 
-if __name__ == "__main__":
-    App()
+def main():
+    if __name__ == "__main__":
+        App()

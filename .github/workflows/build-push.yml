@@ -1,0 +1,39 @@
+name: Build (Push)
+on: 
+  push
+
+jobs: 
+  build:
+    name: Python CI (Push)
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci.skip]')"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4.5.0
+      with:
+        python-version: "3.11"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        mkdir pyz-dist
+        pip install -r requirements.txt --target pyz-dist
+    - name: Build
+      run: |
+        cd ..
+        python -m zipapp ModLibrary -m "main:main" -c
+        mv ModLibrary.pyz ModLibrary/pyz-dist
+        cd ModLibrary
+    - name: Create launch script
+      run: |
+        cd pyz-dist
+        echo "python3 ModLibrary.pyz" > run.sh
+        echo "python3 ModLibrary.pyz" > run.bat
+    - name: Get commit hash
+      id: get_commit
+      uses: pr-mpt/actions-commit-hash@v2
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3.1.2
+      with: 
+        name: ModLibrary-pyz-${{ steps.get_commit.outputs.short }}
+        path: pyz-dist
