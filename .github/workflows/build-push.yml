@@ -22,8 +22,8 @@ jobs:
       run: |
         cd ..
         python -m zipapp ModLibrary -m "main:main" -c
+        mv main.pyz ModLibrary/pyz-dist
         cd ModLibrary
-        mv main.pyz pyz-dist
     - name: Get commit hash
       id: get_commit
       uses: pr-mpt/actions-commit-hash@v2
