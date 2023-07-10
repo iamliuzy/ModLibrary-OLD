@@ -20,7 +20,9 @@ jobs:
         pip install -r requirements.txt --target pyz-dist
     - name: Build
       run: |
-        python -m zipapp . -m "main:main" -c
+        cd ..
+        python -m zipapp ModLibrary -m "main:main" -c
+        cd ModLibrary
         mv main.pyz pyz-dist
     - name: Get commit hash
       id: get_commit
