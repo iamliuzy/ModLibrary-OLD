@@ -24,6 +24,11 @@ jobs:
         python -m zipapp ModLibrary -m "main:main" -c
         mv ModLibrary.pyz ModLibrary/pyz-dist
         cd ModLibrary
+    - name: Create launch script
+      run: |
+        cd pyz-dist
+        echo "python3 ModLibrary.pyz" > run.sh
+        echo "python3 ModLibrary.pyz" > run.bat
     - name: Get commit hash
       id: get_commit
       uses: pr-mpt/actions-commit-hash@v2
