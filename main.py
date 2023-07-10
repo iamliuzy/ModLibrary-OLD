@@ -62,5 +62,6 @@ class App(object):
         self.root.mainloop()
 
 
-if __name__ == "__main__":
-    App()
+def main():
+    if __name__ == "__main__":
+        App()
