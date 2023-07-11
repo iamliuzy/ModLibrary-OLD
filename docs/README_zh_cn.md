@@ -2,7 +2,7 @@
 
 一个Minecraft模组管理器，目前还在开发中。
 
-> [English](https://github.com/iamliuzy/ModLibrary/blob/dev/main/README.md) | 简体中文
+> [English](README.md) | 简体中文
 
 ## 开发进度
 

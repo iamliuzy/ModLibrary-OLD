@@ -21,7 +21,7 @@ import toml
 
 LICENSE_TEXT = """
                ModLibrary, a Minecraft mod manager.
-               Copyright (C) 2022  iamliuzy
+               Copyright (C) 2023 iamliuzy
 
                This program is free software: you can redistribute it and/or modify
                it under the terms of the GNU General Public License as published by
