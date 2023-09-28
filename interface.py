@@ -57,3 +57,10 @@ class HomePage(Page):
             mods.Mod(files)
         else:
             return
+
+
+
+
+class Download(Page):
+    def __init__(self):
+        super.__init__(self)

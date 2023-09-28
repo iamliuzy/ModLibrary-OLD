@@ -34,7 +34,7 @@ class App(object):
                                  relheight=1.0)
         self.sidebar_homepage_button = ttk.Button(self.sidebar_panel,
                                                   text=lang.trans("sidebar.home"),
-                                                  command=self.interfaces.homepage.init())
+                                                  command=self.interfaces.homepage.init)
         self.sidebar_homepage_button.place(x=0, y=0,
                                            relwidth=1.0,
                                            height=50)
