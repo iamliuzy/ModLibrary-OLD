@@ -24,6 +24,7 @@ jobs:
         python -m zipapp ModLibrary -m "main:main" -c
         mv ModLibrary.pyz ModLibrary/pyz-dist
         cd ModLibrary
+        ./copy_assets.sh
     - name: Create launch script
       run: |
         cd pyz-dist
