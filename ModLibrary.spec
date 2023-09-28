@@ -2,12 +2,20 @@
 
 block_cipher = None
 
+assets = []
+with open("assets.txt", "r", encoding="utf-8") as assets_file:
+    for asset in assets_file:
+        if asset.endswith("/"):
+            assets.append((asset, asset))
+        else:
+            assets.append((asset, '.'))
+
 
 a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('README.md', '.'), ('LICENSE', '.'), ('README_zh_cn.md', '.'), ('lang', 'lang')],
+    datas=assets,
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
