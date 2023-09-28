@@ -35,6 +35,7 @@ class Page(object):
 
 class HomePage(Page):
     def init(self):
+        super().__init__(self)
         self.panel.place(x=50, y=0,
                          width=self.window_width - 50,
                          relheight=1.0)
@@ -57,6 +58,11 @@ class HomePage(Page):
             mods.Mod(files)
         else:
             return
+
+    def refresh(self):
+        self.panel.destroy()
+        self.panel = tkinter.Frame(self.root)
+        self.init()
 
 
 
