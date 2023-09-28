@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 #  ModLibrary, a Minecraft mod manager.
 #  Copyright (C) 2023 iamliuzy
 #
