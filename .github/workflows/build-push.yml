@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: |
         cd ..
-        python -m zipapp ModLibrary -m "main:main" -c
+        python -m zipapp ModLibrary -m "main:main"
         mv ModLibrary.pyz ModLibrary/pyz-dist
         cd ModLibrary
         ./copy_assets.sh
