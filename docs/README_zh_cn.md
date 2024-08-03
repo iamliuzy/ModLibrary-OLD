@@ -1,6 +1,8 @@
-# ModLibrary
+# ModLibrary(OLD)
 
-一个Minecraft模组管理器，目前还在开发中。
+本项目已停止开发。用 PyQt6 重写的版本[在此](https://github.com/iamliuzy/ModLibrary)。
+
+一个Minecraft模组管理器。
 
 > [English](README.md) | 简体中文
 
