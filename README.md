@@ -1,6 +1,8 @@
-# ModLibrary
+# ModLibrary(OLD)
+
+This project is no longer being developed. A rewritten version with PyQt6 is [here](https://github.com/iamliuzy/ModLibrary). 
+
 A Minecraft mod manager.
-This program is now in development.
 
 > English | [简体中文](docs/README_zh_cn.md)
 
